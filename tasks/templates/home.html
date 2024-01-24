@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container my-5">
+    <section class="card card-body">
+        <h1 class="display-1 text-center">ToDo App</h1>
+        <p>Esta aplicación fue realizada como parte del camino de aprendizaje del lenguaje Python y algunas de las herramientas de trabajo de su ecosistema. En particular, para el desarrollo de esta aplicación web se utilizaron el framework Django para el diseño del Backend (servidor, rutas, autenticación, persistencia de datos), integrado a la base de datos nativa SQLite3, migrada al momento del despliegue al Gestor de Bases de Datos PostgreSQL. La funcionalidad central de la aplicación consiste en la posibilidad de crear tareas, actualizarlas, darlas por terminadas o eliminarlas de la aplicación. Al mismo tiempo el usuario puede optar por listar tanto el total de las tareas que ha creado como aquellas que aún tiene pendientes y aún las que ya ha marcado como finalizadas. Se hace uso de varios de los módulos de Python para el registro, la autenticación y el logueo de usuarios en la aplicación, así como las características de Jinja 2 para la personalización de las vistas en el Frontend según el usuario se encuentre o no registrado y/o logueado en el sitio.</p>
+        <span><strong>Mauro Kein</strong></span>
+        <span>GitHub: @maurokeindeveloper</span>
+        <span>Email: maurokein1990@gmail.com</span>
+        {% if user.is_authenticated %}
+            <div class="text-center">
+                <a class="btn btn-dark" href="{% url 'logout' %}">Cerrar sesión</a>
+            </div>
+        {% else %}
+            <div class="text-center">
+                <a class="btn btn-secondary" href="{% url 'login' %}">Ingresar</a>
+                <a class="btn btn-dark" href="{% url 'signup' %}">Registrarse</a>
+            </div>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}
